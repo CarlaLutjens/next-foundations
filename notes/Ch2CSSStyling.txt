@@ -1,0 +1,22 @@
+Ch2
+CSS Modules limitar css a un componente automaticamente creando classNames unicos, para no preocuparse
+de colisiones de estilo, usado en page, en el triangulo
+
+Tailwind Tailwind
+
+CSS Global, buena practica añadirla al componente de nivel mas alto (RootLayout), para todas las rutas
+
+CLSX Aplicar clases condicionales, hacer un toggle de classnames
+
+Sass which allows you to import .css and .scss files.
+
+CSS-in-JS libraries such as styled-jsx, styled-components, and emotion.
+
+Yo: Class Variance Authority
+
+-CSS Documentation de NExt en página
+
+Archivos en cuestión:
+home.module.css
+layout.tsx
+page.tsx

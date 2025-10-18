@@ -1,0 +1,13 @@
+Ch1
+
+/app contiene todas las rutas, componentes y lógica para la app
+/app/lib funciones usadas en app, funciones de utilidad reutilizables y funciones de data fetching
+/app/ui ui componentes
+/public static assets, images
+
+-Sugieren para añadir tipos a DB usar Prisma o Drizzle
+-Hay un Plugin de TS para Next
+
+archivos: 
+lib/placeholder-data
+lib/definitions

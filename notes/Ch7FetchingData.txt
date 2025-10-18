@@ -1,0 +1,47 @@
+APis
+APIs are an intermediary layer between your application code and database. 
+There are a few cases where you might use an API:
+
+If you're using third-party services that provide an API.
+If you're fetching data from the client, you want to have an API layer that runs on the server 
+to avoid exposing your database secrets to the client.
+In Next.js, you can create API endpoints using Route Handlers.
+
+When creating your API endpoints, you need to write logic to interact with your database.
+If you are using React Server Components (fetching data on the server), you can skip the API layer, 
+and query your database directly without risking exposing your database secrets to the client.
+
+Using Server Components to fetch data
+* You can use async/await syntax without needing useEffect, 
+useState or other data fetching libraries.
+
+*Server Components run on the server, so you can keep 
+expensive data fetches and logic on the server, only sending the result to the client.
+
+*Since Server Components run on the server, you can query the database directly without 
+an additional API layer. This saves you from writing and maintaining additional code.
+
+dashboard/Page.tsx
+revenue-chart.tsx
+latest-invoices.tsx
+
+1The data requests are unintentionally blocking each other, creating a request waterfall.
+2By default, Next.js prerenders routes to improve performance, this is called Static Rendering. 
+So if your data changes, it won't be reflected in your dashboard. => any data updates won't
+be reflected in the app
+
+About 1:
+solicitudes de red quedependen de la completación de las solicitudes anteriores, en el caso
+del data fetching una solicitud solo puede empezar una vez la anterior retornó datos,
+lo que hace que las solicitues sean secuenciales. No son malos, porque de repente una solicitud 
+puede depender del resultado de otro, por ejemplo obtener un id para usarlo luego.
+Si es un comportamiento inintencionado entonces puede afectar al rendimiento
+
+Para volverlo pararlelo usamos Promise.all como está en el fetchCardData del /app/lib/data.ts
+de esta manera:
+1) las capturas de datos empiezan a la vez, que e smás rápidos que esperar que se completen en 
+cascada
+2)Usar un patrón de nativo de JS que se puede aplicar en cualquier librería o framework
+
+La desventaja de contar con este método es ¿que ocurre si una solicitud es más lenta que todas
+las otras?

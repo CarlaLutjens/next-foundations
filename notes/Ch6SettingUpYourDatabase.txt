@@ -1,0 +1,6 @@
+Deployeo a vercel
+no se puede deployear -> hobby / repoprivado
+
+población base de datos con neon con comando seed
+
+testeo de si todo está correcto

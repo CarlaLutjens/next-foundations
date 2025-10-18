@@ -1,0 +1,27 @@
+Streaming is a data transfer technique that allows you to break down a route into smaller 
+"chunks" and progressively stream them from the server to the client as they become ready.
+(chunks are rendered in parallel)
+
+By streaming, you can prevent slow data requests from blocking your whole page. 
+This allows the user to see and interact with parts of the page without waiting for all 
+the data to load before any UI can be shown to the user.
+
+There are two ways you implement streaming in Next.js:
+
+At the page level, with the loading.tsx file (which creates <Suspense> for you).
+At the component level, with <Suspense> for more granular control.
+
+loading.tsx is a special Next.js file built on top of React Suspense. It allows you to 
+create fallback UI to show as a replacement while page content loads.
+
+Since <SideNav> is static, it's shown immediately. The user can interact with 
+<SideNav> while the dynamic content is loading.
+
+The user doesn't have to wait for the page to finish loading before navigating away 
+(this is called interruptable navigation).
+
+using route groups to ensure a loading file doesn't apply to the dashboards childrens 
+(so it only applies to the dashboard page)
+
+Anyway, its better to stream a component, since there's only one problematic function, fetchRevenue
+this is made with suspense

@@ -1,0 +1,10 @@
+Create new routes 
+
+Layouts no se re-renderizan, pages si, esto es Partial rendering que mantiene el estado del
+lado del cliente en el layout cuando se transisiona entre páginas (el estado del Ly se conserva)
+
+Los root layout son requeridos en todas las aplicaciones next
+Any UI you add to the root layout will be shared across all pages in your application. 
+You can use the root layout to modify your <html> and <body> tags, and add metadata
+
+dashboard folder and everything in it

@@ -1,0 +1,21 @@
+Usar <a> causa full page refresh en cada navegación, mejor <Link> que permite hacer navegación
+del lado del cliente (simbolo loading en la pestaña)
+
+/app/ui/dashboard/nav-links.tsx
+
+code-splitting 
+Next separa la app en aplicaciones de ruta (diferente a una SPA de react).
+Esto significa que las páginas quedan isoladas, si una página arroja un error el resto
+de la aplicación continuará funcionando, esto también es menos código para que el navegador
+parsee, lo que hace tu aplicación más rápida.
+El code-splitting (división de código) significa precisamente eso: no cargar todo el código 
+de la aplicación de una sola vez, sino solo la parte que se necesita en ese momento.
+
+prefetching
+en producción cuando un Link aparece en el viewport, automaticamente prefetchea el código para la
+ruta enlazada. En el momento que el usuario hace click el código de la página nueva ya estará
+cargada, esto es lo que sea que la transición de la página sea casi instantáneo
+
+Links activos para mostrar en qué página está el usuario. Necesito ver la ruta de la url, lo 
+consigo con usePathname (React hook)
+

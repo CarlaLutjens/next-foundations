@@ -1,0 +1,51 @@
+Por qué optimizar:
+Cumulative Layout Shift link que es una metrica usada por google para evaluar el rendimiento
+y la experiencia de usuario de un sitio web
+
+El layout shift ocurre cuando se renderiza la app primero en una eleccion fallback y luego cambia a
+la esperada una vez esta se carga, lo que genera que el layout se altere
+
+cuando se usa el modulo next/font, descarga los archivos de fuente en tiempo de build y los hostea
+en conjunto a los otros assets estáticos. Esto significa que cuando un usuario visita tu app,
+no hay solicitudes de red adicionales para funtes que podrían impactar el rendimiento
+
+app/ui/font.ts
+app/layout.tsx -> Antialiased para "smoothing"
+app/page.tsx
+
+next/image para optimizar imagenes ayuda con:
+Preventing layout shift automatically when images are loading.
+Resizing images to avoid shipping large images to devices with a smaller viewport.
+Lazy loading images by default (images load as they enter the viewport).
+Serving images in modern formats, like WebP and AVIF, when the browser supports it.
+
+Recuerdo que Image era de pago según cantidad de imagenes hosteadas?
+
+/app/page.tsx
+
+Buena práctica añadir width y height para evitar layout shift, los valores debiesen tener un
+radiod e aspecto identico al de la imagen.
+These values are not the size the image is rendered, but instead the size of the actual image file 
+used to understand the aspect ratio.
+
+Ahora, explicado en contexto:
+
+Cuando usas <Image width={800} height={600} />, Next.js no está forzando a que la imagen se 
+muestre exactamente de 800×600 píxeles en pantalla.
+
+En realidad, esos valores sirven para que Next calcule la proporción (aspect ratio) de la imagen 
+original:
+→ 800 / 600 = 1.33 (o 4:3)
+
+Esa relación se usa para reservar espacio en el layout antes de que cargue la imagen, evitando el 
+famoso layout shift (que el contenido salte cuando la imagen aparece).
+El tamaño real en el navegador puede escalarse (por CSS o por el atributo sizes) sin problema, pero 
+Next necesita saber la relación de aspecto original para hacerlo correctamente.
+
+👉 En resumen:
+
+width y height no controlan el tamaño visual,
+
+sino que le dicen a Next cuál es la forma (proporción) de la imagen fuente.
+
+Más links para ahondar más
